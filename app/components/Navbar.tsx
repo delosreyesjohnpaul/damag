@@ -1,6 +1,6 @@
 import Link from "next/link";
 import damagText from "../../public/damg.svg";
-import damagMobile from "../../public/logodamgfull.svg";
+import damagMobile from "../../public/1722779661144.png";
 import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -20,14 +20,14 @@ export async function Navbar() {
                 <Image 
                     src={damagMobile} 
                     alt="damag mobile icon" 
-                    className="h-20 w-fit"
+                    className="h-14 w-fit"
                     />
                 
                 <Image 
                     src={damagText} 
                     alt="damag desktop" 
                     className="h-40 w-fit hidden lg:block"
-                    />
+                    /> 
             </Link>
 
             <div className="flex items-center gap-x-4">
