@@ -1,6 +1,6 @@
 ## https://damag-msyk.vercel.app/
 
-##DAMAG is an interactive knowledge-sharing platform where users can post questions, share thoughts, and provide answers on a wide range of topics. Designed to foster collaborative learning and idea exchange, DAMAG enables users to engage in meaningful discussions, seek expert advice, and contribute their insights. Whether you're looking to solve a problem, gain new perspectives, or simply share your knowledge, DAMAG offers a community-driven space for intellectual growth and discovery.
+## DAMAG is an interactive knowledge-sharing platform where users can post questions, share thoughts, and provide answers on a wide range of topics. Designed to foster collaborative learning and idea exchange, DAMAG enables users to engage in meaningful discussions, seek expert advice, and contribute their insights. Whether you're looking to solve a problem, gain new perspectives, or simply share your knowledge, DAMAG offers a community-driven space for intellectual growth and discovery.
 
 ![image](https://github.com/user-attachments/assets/2b2199d5-229e-46a7-8c03-eae09a023b8d)
 
