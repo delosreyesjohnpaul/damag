@@ -43,7 +43,7 @@ export function PostCard({id, imageString, jsonContent, subName, title, userName
             <div>
                 <div className="flex items-center gap-x-2 p-2">
                     <Link className="font-semibold text-xs" href={`/r/${subName}`}>d/{subName}</Link>
-                    <p className="text-xs text-muted-foreground">Posted by: <span className="hover:text-primary">d/{userName}</span></p>
+                    <p className="text-xs text-muted-foreground">Damag ni: <span className="hover:text-primary">d/{userName}</span></p>
                 </div>
 
                 <div className="px-2">
@@ -69,18 +69,18 @@ export function PostCard({id, imageString, jsonContent, subName, title, userName
                 </div>
                 <div className="m-3 flex items-center gap-x-5">
                 <div className="flex items-center gap-x-1">
-  <Link className="ml-1" href={`/post/${id}`} passHref>
-    <MessageCircle className="h-4 w-4 text-muted-foreground" />
-  </Link>
-  <p className="text-muted-foreground font-medium text-xs">
-    {commentAmount}
-    <Link className="ml-1" href={`/post/${id}`} passHref>
-      Comments
-    </Link>
-  </p>
-</div>
+                <Link className="ml-1" href={`/post/${id}`} passHref>
+                    <MessageCircle className="h-4 w-4 text-muted-foreground" />
+                </Link>
+                <p className="text-muted-foreground font-medium text-xs">
+                    {commentAmount}
+                    <Link className="ml-1" href={`/post/${id}`} passHref>
+                    Comments
+                </Link>
+                </p>
+                </div>
 
-                    <CopyLink id={id}/>
+                <CopyLink id={id}/>
                 </div>
             </div>
         </Card>

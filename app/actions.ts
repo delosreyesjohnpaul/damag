@@ -147,47 +147,43 @@ export async function handleVote(formData: FormData) {
         return redirect("/api/auth/login");
     }
 
-    const postId = formData.get("postId") as string;
+    const postId = formData.get("postId") as string | null;
+    const commentId = formData.get("commentId") as string | null;
     const voteDirection = formData.get("voteDirection") as TypeofVote;
 
-    const vote = await prisma.vote.findFirst({
-        where: {
-            postId: postId,
-            userId: user.id,
-        },
-    });
+    let vote;
+    if (postId) {
+        vote = await prisma.vote.findFirst({
+            where: { postId, userId: user.id },
+        });
+    } else if (commentId) {
+        vote = await prisma.vote.findFirst({
+            where: { commentId, userId: user.id },
+        });
+    }
 
     if (vote) {
         if (vote.voteType === voteDirection) {
-            await prisma.vote.delete({
-                where: {
-                    id: vote.id,
-                },
-            });
-
-            return revalidatePath("/");
+            await prisma.vote.delete({ where: { id: vote.id } });
         } else {
             await prisma.vote.update({
-                where: {
-                    id: vote.id,
-                },
-                data: {
-                    voteType: voteDirection,
-                },
+                where: { id: vote.id },
+                data: { voteType: voteDirection },
             });
-            return revalidatePath("/");
         }
+    } else {
+        await prisma.vote.create({
+            data: {
+                voteType: voteDirection,
+                userId: user.id,
+                postId: postId ?? undefined,
+                commentId: commentId ?? undefined,
+            },
+        });
     }
-
-    await prisma.vote.create({
-        data: {
-            voteType: voteDirection,
-            userId: user.id,
-            postId: postId,
-        },
-    });
     return revalidatePath("/");
 }
+
 
 export async function createComment(formData: FormData) {
     const { getUser } = getKindeServerSession();

@@ -66,11 +66,16 @@ enum TypeofVote{
   UP 
   DOWN 
 }
+
 model Vote {
   id String @id @default(uuid())
 
-  Post Post? @relation(fields: [postId], references: [id])
+  post Post? @relation(fields: [postId], references: [id])
   postId String?
+  
+  comment Comment? @relation(fields: [commentId], references: [id])
+  commentId String?
+
   User User? @relation(fields: [userId], references: [id])
   userId String?
 
@@ -87,4 +92,5 @@ model Comment {
   Post Post? @relation(fields: [postId], references: [id])
   postId String?
 
+  Vote Vote[]
 }
