@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { updateUsername } from "../actions";
 import { SubmitButton } from "./SubmitButtons";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -27,6 +27,7 @@ export function SettingsForm({
 }) {
     const [state, formAction] = useFormState(updateUsername, initialState);
     const { toast } = useToast();
+    const { pending } = useFormStatus();
 
     useEffect(() => {
         if (state?.status === "green") {
@@ -44,17 +45,16 @@ export function SettingsForm({
     }, [state, toast]);
 
     return (
-        
         <form action={formAction}>
             <h1 className="text-3xl font-extrabold tracking-tight">Settings</h1>
 
             <Separator className="my-4" />
             
             <Label className="text-lg">Username</Label>
-            <p className="text-muted-foreground ">In this Settings Page you can change your Username!</p>
-            <Input  defaultValue={username ?? undefined} name="username" required className="mt-2 mb-7" minLength={3} maxLength={21} />
+            <p className="text-muted-foreground">In this Settings Page you can change your Username!</p>
+            <Input defaultValue={username ?? undefined} name="username" required className="mt-2 mb-7" minLength={3} maxLength={21} />
             
-            <Label className="text-lg mt-4" >First Name</Label>
+            <Label className="text-lg mt-4">First Name</Label>
             <Input defaultValue={firstName ?? undefined} name="firstName" required className="mt-2 mb-7" minLength={1} maxLength={50} />
 
             <Label className="text-lg mt-4">Last Name</Label>
@@ -66,7 +66,7 @@ export function SettingsForm({
                 <Button variant="secondary" asChild type="button">
                     <Link href="/">Cancel</Link>
                 </Button>
-                <SubmitButton text="Save Changes" />
+                <SubmitButton text="Save Changes" isSubmitting={pending} />
             </div>
         </form>
     );
