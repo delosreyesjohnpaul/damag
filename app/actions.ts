@@ -1,4 +1,5 @@
 "use server";
+
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
@@ -51,7 +52,7 @@ export async function createCommunity(prevState: any, formData: FormData) {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
     if (!user) {
-        return redirect("/api/auth/login");
+        return { status: "error", message: "You must be logged in to create a community." };
     }
 
     try {
@@ -64,19 +65,20 @@ export async function createCommunity(prevState: any, formData: FormData) {
             },
         });
 
-        return redirect(`/r/${data.name}`);
+        // Redirect and return a success message
+        return { status: "success", message: `Community ${data.name} created successfully!` };
+        
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === "P2002") {
-                return {
-                    message: "This name is already used...",
-                    status: "error",
-                };
+                return { status: "error", message: "This name is already used..." };
             }
         }
-        throw e;
+        return { status: "error", message: "An unexpected error occurred..." };
     }
 }
+
+
 
 export async function updateSubDescription(prevState: any, formData: FormData) {
     const { getUser } = getKindeServerSession();
@@ -205,4 +207,32 @@ export async function createComment(formData: FormData) {
     });
 
     revalidatePath(`/post/${postId}`);
+}
+
+
+export async function handleDelete(formData: FormData) {
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+
+    if (!user) {
+        return redirect("/api/auth/login");
+    }
+
+    const postId = formData.get("postId") as string;
+
+    try {
+        const post = await prisma.post.findUnique({
+            where: { id: postId },
+        });
+
+        if (post && post.userId === user.id) {
+            await prisma.post.delete({
+                where: { id: postId },
+            });
+        }
+    } catch (e) {
+        throw new Error("Unable to delete post");
+    }
+
+    return revalidatePath("/");
 }

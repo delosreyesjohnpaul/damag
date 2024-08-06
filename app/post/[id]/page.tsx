@@ -65,7 +65,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     const data = await getData(params.id);
     return (
         <div className="max-w-[1200px] mx-auto flex gap-x-10 mt-4 mb-10">
-            <div className="w-[70%] flex flex-col gap-y-5 ">
+            <div className="w-[70%] flex flex-col gap-y-5">
                 <Card className="p-2 flex">
                     <div className="flex flex-col items-center gap-y-2 p-2">
                         <form action={handleVote}>
@@ -73,11 +73,11 @@ export default async function PostPage({ params }: { params: { id: string } }) {
                             <input type="hidden" name="postId" value={data.id} />
                             <UpVote />
                         </form>
-                        {data.Vote.reduce((acc, vote) => {
-                            if (vote.voteType === "UP") return acc + 1;
-                            if (vote.voteType === "DOWN") return acc - 1;
-                            return acc;
-                        }, 0)}
+                        <div>
+                            <p>{data.Vote.filter(vote => vote.voteType === "UP").length}</p>
+                            <p>{data.Vote.filter(vote => vote.voteType === "DOWN").length}</p>
+                        </div>
+                        
                         <form action={handleVote}>
                             <input type="hidden" name="voteDirection" value="DOWN" />
                             <input type="hidden" name="postId" value={data.id} />
@@ -118,11 +118,10 @@ export default async function PostPage({ params }: { params: { id: string } }) {
                                         <input type="hidden" name="commentId" value={comment.id} />
                                         <UpVote />
                                     </form>
-                                    {comment.Vote.reduce((acc, vote) => {
-                                        if (vote.voteType === "UP") return acc + 1;
-                                        if (vote.voteType === "DOWN") return acc - 1;
-                                        return acc;
-                                    }, 0)}
+                                    <div>
+                                        <p>{comment.Vote.filter(vote => vote.voteType === "UP").length}</p>
+                                        <p>{comment.Vote.filter(vote => vote.voteType === "DOWN").length}</p>
+                                    </div>
                                     <form action={handleVote}>
                                         <input type="hidden" name="voteDirection" value="DOWN" />
                                         <input type="hidden" name="commentId" value={comment.id} />
@@ -130,7 +129,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
                                     </form>
                                 </div>
                                 <div>
-                                    <p className="text-xs text-muted-foreground">
+                                    <p className="text-xs text-muted-foreground mb-5">
                                         u/{comment.User?.userName}
                                     </p>
                                     <p>{comment.text}</p>
@@ -155,7 +154,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
                                 className="rounded-full h-16 w-16"
                             />
                             <Link href={`/r/${data?.subName}`} className="font-medium">
-                                r/{data?.subName}
+                                d/{data?.subName}
                             </Link>
                         </div>
                         {data?.Subreddit?.description && (
@@ -177,7 +176,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
                         </div>
                         <Separator className="my-5"/>
                         <Button asChild className="rounded-full w-full">
-                            <Link href={`/r/${data?.subName}/create`}>Create Post</Link>
+                            <Link href={`/r/${data?.subName}/create`}>Create Damag</Link>
                         </Button>
                     </div>
                 </Card>

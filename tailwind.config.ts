@@ -56,6 +56,13 @@ export default withUt({
         gray: {
           950: '#121212',
         },
+        blue: {
+          500: '#3b82f6',
+        },
+        red: {
+          500: '#ef4444',
+        },
+        
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,6 +84,7 @@ export default withUt({
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }) satisfies Config;

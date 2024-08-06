@@ -82,7 +82,7 @@ export default function Home({searchParams}: {searchParams: {page: string}}) {
 
             <div className="flex flex-col gap-y-3">
             <Button asChild variant="secondary">
-              <Link href="/r/Home/create">Create Post</Link>
+              <Link href="/r/Home/create">Create Damag</Link>
               </Button>
             <Button asChild >
               <Link href="/r/create">Create Community</Link>

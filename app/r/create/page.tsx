@@ -1,5 +1,4 @@
 "use client";
-
 import { createCommunity } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButtons";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { FormEvent } from "react";
 
-
 const initialState = {
     message: "",
     status: "",
@@ -22,6 +20,7 @@ export default function SubredditPage() {
     const [state, formAction] = useFormState(createCommunity, initialState);
     const { toast } = useToast();
     const [name, setName] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (state.status === "error") {
@@ -30,7 +29,14 @@ export default function SubredditPage() {
                 description: state.message,
                 variant: "destructive",
             });
+        } else if (state.status === "success") {
+            toast({
+                title: "Success",
+                description: state.message,
+                variant: "default",
+            });
         }
+        setIsSubmitting(false);
     }, [state, toast]);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -43,6 +49,7 @@ export default function SubredditPage() {
             });
             return;
         }
+        setIsSubmitting(true);
         const formData = new FormData(event.currentTarget);
         formAction(formData);
     };
@@ -77,7 +84,7 @@ export default function SubredditPage() {
                             Cancel
                         </Link>
                     </Button>
-                    <SubmitButton text="Create Community" />
+                    <SubmitButton text="Create Community" isSubmitting={isSubmitting} />
                 </div>
             </form>
         </div>

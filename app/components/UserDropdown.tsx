@@ -1,5 +1,5 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { BlindsIcon, BookPlusIcon, FilePlus2, FileUp, HomeIcon, LogOutIcon, MenuIcon, TrendingUp, TrendingUpIcon, User2Icon, UserCircle, Users } from "lucide-react";
+import { BlindsIcon, BookPlusIcon, FilePenIcon, FilePlus2, FileUp, HomeIcon, LogOutIcon, MenuIcon, TrendingUp, TrendingUpIcon, User2Icon, UserCircle, Users } from "lucide-react";
 import Link from "next/link";
 import {LogoutLink} from '@kinde-oss/kinde-auth-nextjs/components'
 import community from "../../public/users-four.svg"
@@ -62,7 +62,7 @@ export function UserDropdown({userImage}: iAppProps) {
                 <DropdownMenuItem>
                     <FilePlus2 className="h-5 w-5 lg mr-2"/>
                     <Link className="w-[145px]" href="/r/Home/create">
-                    Create Post
+                    Create Damag
                     </Link>
                 </DropdownMenuItem>
 

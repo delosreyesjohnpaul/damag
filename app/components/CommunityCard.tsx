@@ -16,10 +16,9 @@ interface CommunityCardProps {
 }
 
 export function CommunityCard({ name, description, imageString, postCount }: CommunityCardProps) {
-    // Array of random images
-    const randomImages = [ranImageone, ranImagetwo, ranImagethree, ranImagefour, ranImage5];
 
-    // Function to randomly select an image
+    const randomImages = [ranImageone, ranImagetwo, ranImagethree, ranImagefour, ranImage5];
+    
     const getRandomImage = () => {
         return randomImages[Math.floor(Math.random() * randomImages.length)];
     };
@@ -40,7 +39,7 @@ export function CommunityCard({ name, description, imageString, postCount }: Com
                     <h2 className="text-xl font-bold text-primary">{name}</h2>
                 </Link>
                 {description && <p className="text-sm text-muted-foreground">{description}</p>}
-                <p className="text-sm text-muted-foreground">{postCount} Posts</p>
+                <p className="text-sm text-muted-foreground">{postCount} Damag</p>
             </div>
         </Card>
     )

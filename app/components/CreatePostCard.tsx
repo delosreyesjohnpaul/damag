@@ -12,7 +12,7 @@ export function CreatePostCard(){
             <Image src={pfp} alt="pfp" className="h-12 w-fit"/>
 
             <Link href="/r/Home/create" className="w-full">
-                <Input placeholder="Create your Post"/>
+                <Input placeholder="Create your Damag"/>
             </Link>
 
             <div className="flex items-center gap-x-4">

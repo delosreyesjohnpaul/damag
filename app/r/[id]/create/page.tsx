@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import pfp from "../../../../public/rpfp.png"
+import pfp from "../../../../public/rpfp.png";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -27,8 +27,17 @@ export default function CreatePostRoute({ params }: { params: { id: string }; })
     const [imageUrl, setImageUrl] = useState<null | string>(null);
     const [json, setJson] = useState<null | JSONContent>(null);
     const [title, setTitle] = useState<null | string>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const createPostDamag = createPost.bind(null, { jsonContent: json ?? { content: [] } });
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        try {
+            await createPost({ jsonContent: json ?? { content: [] } }, new FormData(e.currentTarget));
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="max-w-[1000px] mx-auto flex gap-x-10 mt-4">
@@ -43,7 +52,7 @@ export default function CreatePostRoute({ params }: { params: { id: string }; })
                     </TabsList>
                     <TabsContent value="post">
                         <Card>
-                            <form action={createPostDamag}>
+                            <form onSubmit={handleSubmit}>
                                 <input 
                                     type="hidden" 
                                     name="imageUrl" 
@@ -63,7 +72,7 @@ export default function CreatePostRoute({ params }: { params: { id: string }; })
                                     <TipTapEditor setJson={setJson} json={json ?? { content: [] }} />
                                 </CardHeader>
                                 <CardFooter>
-                                    <SubmitButton text="Create Post"/>
+                                    <SubmitButton text="Create Damag" isSubmitting={isSubmitting}/>
                                 </CardFooter>
                             </form>
                         </Card>

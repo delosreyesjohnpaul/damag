@@ -93,7 +93,7 @@ export default async function SubredditRoute({
                     <FileQuestion className="h-10 w-10 text-primary"/>
 
                     </div>
-                    <h2 className="mt-6 text-xl font-semibold ">No Post have been created yet... </h2>
+                    <h2 className="mt-6 text-xl font-semibold ">No Damag have been created yet... </h2>
                 </div>
             ): (
                 <>
@@ -161,7 +161,7 @@ export default async function SubredditRoute({
                     </div>
                     <Separator className="my-5"/>
                     <Button asChild className="rounded-full w-full">
-                    <Link href={user?.id ? `/r/${data?.name}/create` : "/api/auth/login"}>Create Post</Link>
+                    <Link href={user?.id ? `/r/${data?.name}/create` : "/api/auth/login"}>Create Damag</Link>
 
                     </Button>
                 </div>
