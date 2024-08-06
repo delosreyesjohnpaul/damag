@@ -52,7 +52,7 @@ export async function createCommunity(prevState: any, formData: FormData) {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
     if (!user) {
-        return { status: "error", message: "You must be logged in to create a community." };
+        return redirect("/api/auth/login");
     }
 
     try {
@@ -65,18 +65,20 @@ export async function createCommunity(prevState: any, formData: FormData) {
             },
         });
 
-        // Redirect and return a success message
-        return { status: "success", message: `Community ${data.name} created successfully!` };
-        
+        return redirect(`/r/${data.name}`);
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === "P2002") {
-                return { status: "error", message: "This name is already used..." };
+                return {
+                    message: "This name is already used...",
+                    status: "error",
+                };
             }
         }
-        return { status: "error", message: "An unexpected error occurred..." };
+        throw e;
     }
 }
+
 
 
 
