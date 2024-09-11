@@ -37,7 +37,12 @@ DAMAG is an interactive knowledge-sharing platform where users can post question
 
 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Features
+
+- **Community-Driven:** Engage with a community of users to share and gain knowledge.
+- **Interactive Discussions:** Post questions and answers to engage in meaningful discussions.
+- **User-Friendly Interface:** Easy-to-use interface for seamless interaction.
+- **Expert Advice:** Seek and provide expert advice on a variety of topics.
 
 ## Getting Started
 
@@ -68,9 +73,30 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For any questions or inquiries, please contact [John Paul delos Reyes](https://github.com/delosreyesjohnpaul).
+
+---
+
+Feel free to customize this template according to your project's specific details and requirements.
+
